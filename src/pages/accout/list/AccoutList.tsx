@@ -35,7 +35,6 @@ export default function AccoutList() {
     const [isOpen, setIsOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const edit_user = () => {
-        console.log("유저 생성 함수 호출!");
         setIsOpen(true);
     };
 

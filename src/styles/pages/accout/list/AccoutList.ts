@@ -20,6 +20,7 @@ export const UserInfo = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-radius: 8px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 `
 
@@ -76,7 +77,6 @@ export const UserInfoList = styled.div`
     max-width: 1194px;
     width: 100%;
     height: 544px;
-    background-color: red;
 `
 
 export const ColumnName = styled.div`
