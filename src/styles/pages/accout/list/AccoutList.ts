@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const AccoutContainer = styled.div`
     max-width: 1440px;
@@ -60,7 +61,7 @@ export const AddNew = styled.div`
     }
 `
 
-export const AddNewLink = styled.a`
+export const AddNewLink = styled(Link)`
     max-width: 107px;
     width: 100%;
     height: 40px;
@@ -261,6 +262,7 @@ export const DeleteUser = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 `;
 
 export const DeleteUserDiv = styled.div`
@@ -279,6 +281,7 @@ export const ModalActions = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 `
 
 export const DeleteBtn = styled.div`

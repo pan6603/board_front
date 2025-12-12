@@ -72,7 +72,7 @@ export default function AccoutList() {
                     <UserInfoTitle>
                         <UserTitle>UserInfo</UserTitle>
                         <AddNew>
-                            <AddNewLink>AddNew</AddNewLink>
+                            <AddNewLink to="/add">AddNew</AddNewLink>
                         </AddNew>
                     </UserInfoTitle>
                     <UserInfoList>
