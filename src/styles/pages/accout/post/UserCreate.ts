@@ -9,7 +9,7 @@ export const UserCreateContainer = styled.div`
 `
 
 export const UserAddFromDiv = styled.div`
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     height: 600px;
     background-color: #FFFFFF;
@@ -25,9 +25,9 @@ export const UserAddFromDiv = styled.div`
 `
 
 export const UserAddFrom = styled.form`
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
-    height: 400px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -44,6 +44,7 @@ export const PhoneNameText = styled.div`
     width: max-content;
     height: max-content;
     color: #000;
+    margin-left: 20px;
 `
 
 export const PhoneNameInput = styled.input`
@@ -53,6 +54,7 @@ export const PhoneNameInput = styled.input`
     background-color: #F5F5F5;
     border-radius: 8px;
     border: 2px solid #FFFFFF;
+    margin-left: 20px;
 `
 
 
@@ -67,6 +69,7 @@ export const EmailAddressText = styled.div`
     width: max-content;
     height: max-content;
     color: #000;
+    margin-left: 20px;
 `
 
 export const EmailAddressInput = styled.input`
@@ -76,6 +79,7 @@ export const EmailAddressInput = styled.input`
     background-color: #F5F5F5;
     border-radius: 8px;
     border: 2px solid #FFFFFF;
+    margin-left: 20px;
 `
 
 
@@ -90,6 +94,7 @@ export const PhoneNumberText = styled.div`
     width: max-content;
     height: max-content;
     color: #000;
+    margin-left: 20px;
 `
 
 export const PhoneNumberInput = styled.input`
@@ -99,6 +104,7 @@ export const PhoneNumberInput = styled.input`
     background-color: #F5F5F5;
     border-radius: 8px;
     border: 2px solid #FFFFFF;
+    margin-left: 20px;
 `
 
 
@@ -106,14 +112,22 @@ export const PhoneNumberInput = styled.input`
 export const UserAddFromTitle = styled.div`
     max-width: 600px;
     width: 100%;
-    height: 50px;
-    margin: 0 auto;
+    height: max-content;
+    margin: 20px auto;
     display: flex;
     justify-content: center;
     align-items: center;
     color: rgb(63, 87, 255);
     font-size: 24px;
+    
 `
+
+export const UserProfile = styled.img`
+    max-width: 100px;
+    width: 100%;
+    height: 100px;
+`
+
 
 export const ButtonGroup = styled.div`
     max-width: 600px;
@@ -123,7 +137,6 @@ export const ButtonGroup = styled.div`
     gap: 15px;
     justify-content: center;
     align-items: center;
-    
 `
 
 export const SubmitButton = styled.div`

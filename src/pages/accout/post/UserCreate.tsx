@@ -15,8 +15,10 @@ import {
     EmailAddressText,
     EmailAddressInput,
     PhoneNumberText,
-    PhoneNumberInput
+    PhoneNumberInput,
+    UserProfile
 } from "../../../styles/pages/accout/post/UserCreate"
+import userProfileImg from '../../../assets/user_profile.png'
 
 
 export default function UserCreate() {
@@ -24,7 +26,9 @@ export default function UserCreate() {
         <>
             <UserCreateContainer>
                 <UserAddFromDiv>
-                    <UserAddFromTitle>UserCreate</UserAddFromTitle>
+                    <UserAddFromTitle>
+                        <UserProfile src={userProfileImg}/>
+                    </UserAddFromTitle>
 
                     <UserAddFrom>
                         <PhoneNameDiv>
