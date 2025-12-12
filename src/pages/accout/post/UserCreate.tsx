@@ -1,10 +1,15 @@
-
+import { 
+    UserCreateContainer,
+    UserAddFromDiv
+} from "../../../styles/pages/accout/post/UserCreate"
 
 
 export default function UserCreate() {
     return (
         <>
-            <h1>ddd</h1>
+            <UserCreateContainer>
+                <UserAddFromDiv></UserAddFromDiv>
+            </UserCreateContainer>
         </>
     )
 }

@@ -6,7 +6,7 @@ export const AccoutContainer = styled.div`
     width: 100%;
     height: 1117px;
     margin: 0 auto; /* 화면 중앙 */
-    background-color: #FFFFFF;
+    background-color: #F5F5F5;
 `
 
 export const UserInfo = styled.div`
