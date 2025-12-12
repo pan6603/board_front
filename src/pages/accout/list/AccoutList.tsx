@@ -17,21 +17,24 @@ import {
     DeleteButton,
     ActionIcon,
     Overlay,
-    UserCreateContainer,
+    EditUser,
     DeleteUser,
     DeleteUserDiv,
     ModalActions,
     DeleteBtn,
-    CanCelBtn
+    CanCelBtn,
+    CloseIconDiv,
+    CloseIcon
 } from "../../../styles/pages/accout/list/AccoutList"
 import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
+import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
 
 export default function AccoutList() {
     const [isOpen, setIsOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-    const create_user = () => {
+    const edit_user = () => {
         console.log("유저 생성 함수 호출!");
         setIsOpen(true);
     };
@@ -43,6 +46,10 @@ export default function AccoutList() {
 
     const canCel = () => {
         setIsDeleteOpen(false);
+    }
+
+    const close = () => {
+        setIsOpen(false);
     }
 
 
@@ -64,7 +71,7 @@ export default function AccoutList() {
                 <UserInfo>
                     <UserInfoTitle>
                         <UserTitle>UserInfo</UserTitle>
-                        <AddNew onClick={create_user}>
+                        <AddNew>
                             <AddNewLink>AddNew</AddNewLink>
                         </AddNew>
                     </UserInfoTitle>
@@ -83,7 +90,7 @@ export default function AccoutList() {
                                 <TableCell>pan5158@naver.com</TableCell>
                                 <TableCell>010-6603-3800</TableCell>
                                 <ActionButton>
-                                    <EditButton>
+                                    <EditButton onClick={edit_user}>
                                         <ActionIcon src={editImg}></ActionIcon>
                                     </EditButton>
                                     <DeleteButton onClick={delete_user}>
@@ -101,7 +108,13 @@ export default function AccoutList() {
 
             {isOpen && <Overlay />}
 
-            {isOpen && <UserCreateContainer>ddd</UserCreateContainer>}
+            {isOpen && 
+                <EditUser>
+                    <CloseIconDiv>
+                        <CloseIcon src={closeImg} onClick={close}/>
+                    </CloseIconDiv>
+                </EditUser>
+            }
 
             {/* 삭제하기 */}
             {isDeleteOpen && <Overlay />}

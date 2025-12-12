@@ -215,7 +215,7 @@ export const Overlay = styled.div`
 
 
 // AddNew 클릭시 
-export const UserCreateContainer = styled.div`
+export const EditUser = styled.div`
     position: fixed;
     top: 50%;
     left: 50%;
@@ -228,6 +228,25 @@ export const UserCreateContainer = styled.div`
     border-radius: 10px;
 `;
 
+export const CloseIconDiv = styled.div`
+    max-width: 485px;
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+`
+
+export const CloseIcon = styled.img`
+    max-width: 30px;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+`
+
+
+// Delete 클릭시 
 export const DeleteUser = styled.div`
     position: fixed;
     top: 50%;
