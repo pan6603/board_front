@@ -97,10 +97,23 @@ export default function AccoutList() {
                                         <ActionIcon src={deleteImg}></ActionIcon>
                                     </DeleteButton>
                                 </ActionButton>
-                        
                             </TableRowFlex>
                         </TableRow>
-                      
+                        <TableRow>
+                            <TableRowFlex>
+                                <TableCell>임채성</TableCell>
+                                <TableCell>pan5158@naver.com</TableCell>
+                                <TableCell>010-6603-3800</TableCell>
+                                <ActionButton>
+                                    <EditButton onClick={edit_user}>
+                                        <ActionIcon src={editImg}></ActionIcon>
+                                    </EditButton>
+                                    <DeleteButton onClick={delete_user}>
+                                        <ActionIcon src={deleteImg}></ActionIcon>
+                                    </DeleteButton>
+                                </ActionButton>
+                            </TableRowFlex>
+                        </TableRow>
                 
                     </UserInfoList>
                 </UserInfo>

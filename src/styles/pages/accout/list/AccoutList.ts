@@ -118,6 +118,7 @@ export const TableRow = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #EDEDED;
 `
 
 export const TableRowFlex = styled.tr`
