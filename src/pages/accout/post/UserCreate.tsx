@@ -20,7 +20,7 @@ import {
 } from "../../../styles/pages/accout/post/UserCreate"
 import userProfileImg from '../../../assets/user_profile.png'
 import { useState } from "react";
-import { createUser } from "../../../service/users";
+import { createUser } from "../../../service/api";
 import { useNavigate } from "react-router-dom";
 
 
@@ -41,7 +41,7 @@ export default function UserCreate() {
         phone_number: phoneNumber,
       });
 
-      alert("사용자 등록 완료");
+      alert("Success");
       navigate("/");
 
     } catch (error) {
@@ -49,6 +49,7 @@ export default function UserCreate() {
       console.error(error);
     }
   };
+
 
   return (
     <>

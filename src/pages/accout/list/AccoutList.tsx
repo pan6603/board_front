@@ -30,8 +30,13 @@ import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
 import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
+import { getUserList } from "../../../service/api";
+import type { User } from "../../../components /user/user";
 
 export default function AccoutList() {
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState(true);
+
     const [isOpen, setIsOpen] = useState(false);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const edit_user = () => {
@@ -51,6 +56,29 @@ export default function AccoutList() {
         setIsOpen(false);
     }
 
+    // if(fetchUsers.length == 0){
+    //     return (
+    //         <div className="empty">등록된 할 일이 없습니다.</div>
+    //     )
+    // }
+
+      /** 목록 조회 */
+    const fetchUsers = async () => {
+        try {
+            const res = await getUserList();
+            setUsers(res.data);
+        } catch (error) {
+            console.error("유저 목록 조회 실패", error);
+            alert("목록을 불러오지 못했습니다.");
+        } finally {
+        setLoading(false);
+        }
+    };
+
+      useEffect(() => {
+        fetchUsers();
+    }, []);
+
 
     useEffect(() => {
         if (isOpen) {
@@ -63,6 +91,8 @@ export default function AccoutList() {
             document.body.style.overflow = 'auto'; 
         };
     }, [isOpen]);
+
+    if (loading) return <div>로딩중...</div>;
 
     return (
         <>
@@ -83,36 +113,26 @@ export default function AccoutList() {
                                 <Column>Action</Column>
                             </ColumnNameDiv>
                         </ColumnName>
-                        <TableRow>
-                            <TableRowFlex>
-                                <TableCell>임채성</TableCell>
-                                <TableCell>pan5158@naver.com</TableCell>
-                                <TableCell>010-6603-3800</TableCell>
-                                <ActionButton>
-                                    <EditButton onClick={edit_user}>
-                                        <ActionIcon src={editImg}></ActionIcon>
-                                    </EditButton>
-                                    <DeleteButton onClick={delete_user}>
-                                        <ActionIcon src={deleteImg}></ActionIcon>
-                                    </DeleteButton>
-                                </ActionButton>
-                            </TableRowFlex>
-                        </TableRow>
-                        <TableRow>
-                            <TableRowFlex>
-                                <TableCell>임채성</TableCell>
-                                <TableCell>pan5158@naver.com</TableCell>
-                                <TableCell>010-6603-3800</TableCell>
-                                <ActionButton>
-                                    <EditButton onClick={edit_user}>
-                                        <ActionIcon src={editImg}></ActionIcon>
-                                    </EditButton>
-                                    <DeleteButton onClick={delete_user}>
-                                        <ActionIcon src={deleteImg}></ActionIcon>
-                                    </DeleteButton>
-                                </ActionButton>
-                            </TableRowFlex>
-                        </TableRow>
+
+                        {/* 데이터 출력 */}
+                        {users.map((user) => ( 
+                            <TableRow key={user.id}>
+                                <TableRowFlex>
+                                    <TableCell>{user.phone_name}</TableCell>
+                                    <TableCell>{user.email_address}</TableCell>
+                                    <TableCell>{user.phone_number}</TableCell>
+                                    <ActionButton>
+                                        <EditButton onClick={edit_user}>
+                                            <ActionIcon src={editImg}></ActionIcon>
+                                        </EditButton>
+                                        <DeleteButton onClick={delete_user}>
+                                            <ActionIcon src={deleteImg}></ActionIcon>
+                                        </DeleteButton>
+                                    </ActionButton>
+                                </TableRowFlex>
+                            </TableRow>
+                        ))}
+
                 
                     </UserInfoList>
                 </UserInfo>
