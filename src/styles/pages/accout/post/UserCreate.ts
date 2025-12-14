@@ -55,6 +55,7 @@ export const PhoneNameInput = styled.input`
     border-radius: 8px;
     border: 2px solid #FFFFFF;
     margin-left: 20px;
+    color: #000;
 `
 
 
@@ -80,6 +81,7 @@ export const EmailAddressInput = styled.input`
     border-radius: 8px;
     border: 2px solid #FFFFFF;
     margin-left: 20px;
+    color: #000;
 `
 
 
@@ -97,15 +99,18 @@ export const PhoneNumberText = styled.div`
     margin-left: 20px;
 `
 
+
 export const PhoneNumberInput = styled.input`
     max-width: 350px;
     width: 100%;
     height: 40px;
     background-color: #F5F5F5;
     border-radius: 8px;
-    border: 2px solid #FFFFFF;
+    border: none;
     margin-left: 20px;
-`
+    color: #000;
+`;
+
 
 
 
