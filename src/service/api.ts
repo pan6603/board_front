@@ -30,6 +30,12 @@ export const getUserList = () => {
 };
 
 
+/** ✅ 유저 삭제 */
+export const deleteUserApi = (id: number) => {
+  return api.delete(`/users/${id}`);
+};
+
+
 export default api;
 
 

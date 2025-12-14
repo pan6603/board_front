@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { 
     AccoutContainer,
     UserInfo,
@@ -24,27 +25,29 @@ import {
     DeleteBtn,
     CanCelBtn,
     CloseIconDiv,
-    CloseIcon
+    CloseIcon,
+    EmptyState
 } from "../../../styles/pages/accout/list/AccoutList"
 import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
 import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
 import { getUserList } from "../../../service/api";
+import { deleteUserApi } from "../../../service/api";
 import type { User } from "../../../components /user/user";
 
 export default function AccoutList() {
     const [users, setUsers] = useState<User[]>([]);
-    const [loading, setLoading] = useState(true);
-
     const [isOpen, setIsOpen] = useState(false);
+
+    const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const edit_user = () => {
         setIsOpen(true);
     };
 
-    const delete_user = () => {
-        console.log("유저 삭제하기!");
+    const deletePopup = (id: number) => {
+        setSelectedUserId(id);
         setIsDeleteOpen(true);
     }
 
@@ -62,7 +65,7 @@ export default function AccoutList() {
     //     )
     // }
 
-      /** 목록 조회 */
+    /** 목록 조회 */
     const fetchUsers = async () => {
         try {
             const res = await getUserList();
@@ -70,12 +73,29 @@ export default function AccoutList() {
         } catch (error) {
             console.error("유저 목록 조회 실패", error);
             alert("목록을 불러오지 못했습니다.");
-        } finally {
-        setLoading(false);
+        } 
+    };
+    
+    /** 삭제 하기 */
+    const deleteUser = async () => {
+        if (!selectedUserId) return;
+
+        try {
+            await deleteUserApi(selectedUserId);
+            alert("Delete");
+
+            setIsDeleteOpen(false);
+            setSelectedUserId(null);
+
+            fetchUsers(); 
+        } catch (error) {
+            console.error("삭제 실패", error);
+            alert("삭제 실패");
         }
     };
 
-      useEffect(() => {
+
+    useEffect(() => {
         fetchUsers();
     }, []);
 
@@ -92,7 +112,6 @@ export default function AccoutList() {
         };
     }, [isOpen]);
 
-    if (loading) return <div>로딩중...</div>;
 
     return (
         <>
@@ -114,24 +133,32 @@ export default function AccoutList() {
                             </ColumnNameDiv>
                         </ColumnName>
 
-                        {/* 데이터 출력 */}
-                        {users.map((user) => ( 
-                            <TableRow key={user.id}>
+                        {users.length === 0 ? (
+                            <TableRow>
                                 <TableRowFlex>
-                                    <TableCell>{user.phone_name}</TableCell>
-                                    <TableCell>{user.email_address}</TableCell>
-                                    <TableCell>{user.phone_number}</TableCell>
-                                    <ActionButton>
-                                        <EditButton onClick={edit_user}>
-                                            <ActionIcon src={editImg}></ActionIcon>
-                                        </EditButton>
-                                        <DeleteButton onClick={delete_user}>
-                                            <ActionIcon src={deleteImg}></ActionIcon>
-                                        </DeleteButton>
-                                    </ActionButton>
+                                    <EmptyState>데이터가 비워 있습니다.</EmptyState>
                                 </TableRowFlex>
                             </TableRow>
-                        ))}
+                            ) : (
+                            users.map((user) => (
+                                <TableRow key={user.id}>
+                                    <TableRowFlex>
+                                        <TableCell>{user.phone_name}</TableCell>
+                                        <TableCell>{user.email_address}</TableCell>
+                                        <TableCell>{user.phone_number}</TableCell>
+                                        <ActionButton>
+                                            <EditButton onClick={edit_user}>
+                                                <ActionIcon src={editImg} />
+                                            </EditButton>
+                                            <DeleteButton onClick={() => deletePopup(user.id)}>
+                                                <ActionIcon src={deleteImg} />
+                                            </DeleteButton>
+                                        </ActionButton>
+                                    </TableRowFlex>
+                                </TableRow>
+                            ))
+                        )}
+
 
                 
                     </UserInfoList>
@@ -154,7 +181,7 @@ export default function AccoutList() {
             <DeleteUser>
                 <DeleteUserDiv>
                     <ModalActions>
-                        <DeleteBtn>Delete</DeleteBtn>
+                        <DeleteBtn onClick={deleteUser}>Delete</DeleteBtn>
                         <CanCelBtn onClick={canCel}>CanCel</CanCelBtn>
                     </ModalActions>
                 </DeleteUserDiv>    

@@ -110,6 +110,17 @@ export const Column = styled.div`
     }
 `
 
+export const EmptyState = styled.div`
+    max-width: 1094px;
+    width: 100%;
+    height: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 400;
+`
+
 export const TableRow = styled.div`
     max-width: 1194px;
     width: 100%;
