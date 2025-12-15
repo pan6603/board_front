@@ -59,12 +59,6 @@ export default function AccoutList() {
         setIsOpen(false);
     }
 
-    // if(fetchUsers.length == 0){
-    //     return (
-    //         <div className="empty">등록된 할 일이 없습니다.</div>
-    //     )
-    // }
-
     /** 목록 조회 */
     const fetchUsers = async () => {
         try {
