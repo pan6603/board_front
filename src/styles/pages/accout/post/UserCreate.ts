@@ -27,10 +27,11 @@ export const UserAddFromDiv = styled.div`
 export const UserAddFrom = styled.form`
     max-width: 500px;
     width: 100%;
-    height: 300px;
+    height: 600px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
 `
 
 export const PhoneNameDiv = styled.div`
@@ -127,11 +128,45 @@ export const UserAddFromTitle = styled.div`
     
 `
 
-export const UserProfile = styled.img`
+export const UserProfileWrapper = styled.div`
+    position: relative;
     max-width: 100px;
     width: 100%;
     height: 100px;
-`
+    cursor: pointer;
+`;
+
+
+export const UserProfile = styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+`;
+
+
+export const ProfileOverlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.2s;
+
+    ${UserProfileWrapper}:hover & {
+      opacity: 1;
+    }
+`;
 
 
 export const ButtonGroup = styled.div`
