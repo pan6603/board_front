@@ -29,11 +29,32 @@ export const getUserList = () => {
   return api.get("/users/list");
 };
 
+/** 유저 상세 조회 */
+export const getUserDetailApi = (id: number) => {
+  return api.get(`/users/${id}`);
+};
+
+
+/** ✅ 유저 수정 */
+export const editUserApi = (
+  id: number,
+  data: {
+    phone_name: string;
+    email_address: string;
+    phone_number?: string;
+  }
+) => {
+  return api.put(`/users/${id}`, data);
+};
+
+
 
 /** ✅ 유저 삭제 */
 export const deleteUserApi = (id: number) => {
   return api.delete(`/users/${id}`);
 };
+
+
 
 
 export default api;

@@ -44,19 +44,37 @@ import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
 import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
-import { getUserList } from "../../../service/api";
-import { deleteUserApi } from "../../../service/api";
+import { getUserList, deleteUserApi, editUserApi, getUserDetailApi } from "../../../service/api";
 import type { User } from "../../../components /user/user";
 
 export default function AccoutList() {
+    const [phoneName, setPhoneName] = useState("");
+    const [emailAddress, setEmailAddress] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+
     const [users, setUsers] = useState<User[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-    const editPopup = () => {
-        setIsOpen(true);
+
+    const editPopup = async (id: number) => {
+        try {
+            setSelectedUserId(id);
+
+            const res = await getUserDetailApi(id);
+
+            setPhoneName(res.data.phone_name);
+            setEmailAddress(res.data.email_address);
+            setPhoneNumber(res.data.phone_number ?? "");
+
+            setIsOpen(true);
+        } catch (error) {
+            console.error("유저 조회 실패", error);
+            alert("유저 정보를 불러오지 못했습니다.");
+        }
     };
+
 
     const deletePopup = (id: number) => {
         setSelectedUserId(id);
@@ -99,6 +117,27 @@ export default function AccoutList() {
             alert("삭제 실패");
         }
     };
+
+    const editUser = async () => {
+        if (!selectedUserId) return;
+
+        try {
+            await editUserApi(selectedUserId, {
+                phone_name: phoneName,
+                email_address: emailAddress,
+                phone_number: phoneNumber,
+            });
+
+            alert("Edit > Success");
+
+            setIsOpen(false);
+            setSelectedUserId(null);
+            fetchUsers();  
+        } catch (error) {
+            console.error("수정 실패", error);
+            alert("수정실패");   
+        }
+    }
 
 
     useEffect(() => {
@@ -153,7 +192,7 @@ export default function AccoutList() {
                                         <TableCell>{user.email_address}</TableCell>
                                         <TableCell>{user.phone_number}</TableCell>
                                         <ActionButton>
-                                            <EditButton onClick={() => editPopup()}>
+                                            <EditButton onClick={() => editPopup(user.id)}>
                                                 <ActionIcon src={editImg} />
                                             </EditButton>
                                             <DeleteButton onClick={() => deletePopup(user.id)}>
@@ -180,22 +219,31 @@ export default function AccoutList() {
                     <EditInputDiv>
                         <PhoneNameEditInputDiv>
                             <PhoneNameEditInputTitle>PhoneName</PhoneNameEditInputTitle>
-                            <PhoneNameEditInput />
+                            <PhoneNameEditInput 
+                                value={phoneName}
+                                onChange={(e) => setPhoneName(e.target.value)}
+                            />
                         </PhoneNameEditInputDiv>
 
                         <EmailAddressEditInputDiv>
                             <EmailAddressEditInputTitle>Email</EmailAddressEditInputTitle>
-                            <EmailAddressEditInput />
+                            <EmailAddressEditInput 
+                                value={emailAddress}
+                                onChange={(e) => setEmailAddress(e.target.value)}
+                            />
                         </EmailAddressEditInputDiv>
-                        
+
                         <PhoneNumberEditInputDiv>
                             <PhoneNumberEditInputTitle>PhoneNumber</PhoneNumberEditInputTitle>
-                            <PhoneNumberEditInput />
+                            <PhoneNumberEditInput 
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                            />
                         </PhoneNumberEditInputDiv>
                     </EditInputDiv>
 
                     <EditUserButtonGroup>
-                        <EditBtn>Edit</EditBtn>
+                        <EditBtn onClick={editUser}>Edit</EditBtn>
                     </EditUserButtonGroup>
                 </EditUser>
             }
