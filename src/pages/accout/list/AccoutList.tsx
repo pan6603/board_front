@@ -182,10 +182,12 @@ export default function AccoutList() {
                             <PhoneNameEditInputTitle>PhoneName</PhoneNameEditInputTitle>
                             <PhoneNameEditInput />
                         </PhoneNameEditInputDiv>
+
                         <EmailAddressEditInputDiv>
                             <EmailAddressEditInputTitle>Email</EmailAddressEditInputTitle>
                             <EmailAddressEditInput />
                         </EmailAddressEditInputDiv>
+                        
                         <PhoneNumberEditInputDiv>
                             <PhoneNumberEditInputTitle>PhoneNumber</PhoneNumberEditInputTitle>
                             <PhoneNumberEditInput />
