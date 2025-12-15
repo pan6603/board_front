@@ -26,7 +26,19 @@ import {
     CanCelBtn,
     CloseIconDiv,
     CloseIcon,
-    EmptyState
+    EmptyState,
+    EditUserButtonGroup,
+    EditBtn,
+    EditInputDiv,
+    PhoneNameEditInputDiv,
+    EmailAddressEditInputDiv,
+    PhoneNumberEditInputDiv,
+    PhoneNameEditInputTitle,
+    PhoneNameEditInput,
+    EmailAddressEditInputTitle,
+    EmailAddressEditInput,
+    PhoneNumberEditInputTitle,
+    PhoneNumberEditInput
 } from "../../../styles/pages/accout/list/AccoutList"
 import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
@@ -42,7 +54,7 @@ export default function AccoutList() {
 
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-    const edit_user = () => {
+    const editPopup = () => {
         setIsOpen(true);
     };
 
@@ -141,7 +153,7 @@ export default function AccoutList() {
                                         <TableCell>{user.email_address}</TableCell>
                                         <TableCell>{user.phone_number}</TableCell>
                                         <ActionButton>
-                                            <EditButton onClick={edit_user}>
+                                            <EditButton onClick={() => editPopup()}>
                                                 <ActionIcon src={editImg} />
                                             </EditButton>
                                             <DeleteButton onClick={() => deletePopup(user.id)}>
@@ -164,6 +176,25 @@ export default function AccoutList() {
                     <CloseIconDiv>
                         <CloseIcon src={closeImg} onClick={close}/>
                     </CloseIconDiv>
+
+                    <EditInputDiv>
+                        <PhoneNameEditInputDiv>
+                            <PhoneNameEditInputTitle>PhoneName</PhoneNameEditInputTitle>
+                            <PhoneNameEditInput />
+                        </PhoneNameEditInputDiv>
+                        <EmailAddressEditInputDiv>
+                            <EmailAddressEditInputTitle>Email</EmailAddressEditInputTitle>
+                            <EmailAddressEditInput />
+                        </EmailAddressEditInputDiv>
+                        <PhoneNumberEditInputDiv>
+                            <PhoneNumberEditInputTitle>PhoneNumber</PhoneNumberEditInputTitle>
+                            <PhoneNumberEditInput />
+                        </PhoneNumberEditInputDiv>
+                    </EditInputDiv>
+
+                    <EditUserButtonGroup>
+                        <EditBtn>Edit</EditBtn>
+                    </EditUserButtonGroup>
                 </EditUser>
             }
 
