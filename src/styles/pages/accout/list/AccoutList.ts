@@ -146,9 +146,10 @@ export const TableCell = styled.td`
     width: max-content;
     height: max-content;
     font-size: 12px;
-
+    
     &:nth-child(1) {
         margin-left: 10px; 
+        background-color: red;
     }
 
     &:nth-child(2) {

@@ -196,21 +196,22 @@ export default function AccoutList() {
                             users.map((user) => (
                                 <TableRow key={user.id}>
                                     <TableRowFlex>
-                                        <TableCell>
-                                              <img
-                                                src={`http://localhost:3000${user.profile_image}`}
-                                                alt="profile"
-                                                style={{
-                                                width: "120px",
-                                                height: "140px",
-                                                borderRadius: "40%",
-                                                objectFit: "cover",
-                                                marginRight: "8px",
-                                                background: "red"
-                                                }}
-                                            />
-                                            {user.phone_name}
-                                        </TableCell>
+                                        <img
+                                            src={
+                                                user.profile_image ? 
+                                                `http://localhost:3000${user.profile_image}`: DefaultUserProfile
+                                            }
+                                            alt="profile"
+                                            style={{
+                                            width: "50px",
+                                            height: "50px",
+                                            borderRadius: "50%",
+                                            objectFit: "cover",
+                                            marginRight: "8px",
+                                            background: "red"
+                                            }}
+                                        />
+                                        {/* <TableCell>{user.phone_name}</TableCell> */}
                                         <TableCell>{user.email_address}</TableCell>
                                         <TableCell>{user.phone_number}</TableCell>
                                         <ActionButton>
