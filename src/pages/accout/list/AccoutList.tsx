@@ -38,7 +38,9 @@ import {
     EmailAddressEditInputTitle,
     EmailAddressEditInput,
     PhoneNumberEditInputTitle,
-    PhoneNumberEditInput
+    PhoneNumberEditInput,
+    EditProfile,
+    EditProfileImg
 } from "../../../styles/pages/accout/list/AccoutList"
 import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
@@ -46,11 +48,14 @@ import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
 import { getUserList, deleteUserApi, editUserApi, getUserDetailApi } from "../../../service/api";
 import type { User } from "../../../components /user/user";
+import DefaultUserProfile from '../../../assets/user_profile.png';
 
 export default function AccoutList() {
     const [phoneName, setPhoneName] = useState("");
     const [emailAddress, setEmailAddress] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [profileImg, setProfileImg] = useState<string>("");
+
 
     const [users, setUsers] = useState<User[]>([]);
     const [isOpen, setIsOpen] = useState(false);
@@ -63,7 +68,8 @@ export default function AccoutList() {
             setSelectedUserId(id);
 
             const res = await getUserDetailApi(id);
-
+ 
+            setProfileImg(res.data.profile_image);
             setPhoneName(res.data.phone_name);
             setEmailAddress(res.data.email_address);
             setPhoneNumber(res.data.phone_number ?? "");
@@ -157,6 +163,8 @@ export default function AccoutList() {
         };
     }, [isOpen]);
 
+    
+
 
     return (
         <>
@@ -188,7 +196,21 @@ export default function AccoutList() {
                             users.map((user) => (
                                 <TableRow key={user.id}>
                                     <TableRowFlex>
-                                        <TableCell>{user.phone_name}</TableCell>
+                                        <TableCell>
+                                              <img
+                                                src={`http://localhost:3000${user.profile_image}`}
+                                                alt="profile"
+                                                style={{
+                                                width: "120px",
+                                                height: "140px",
+                                                borderRadius: "40%",
+                                                objectFit: "cover",
+                                                marginRight: "8px",
+                                                background: "red"
+                                                }}
+                                            />
+                                            {user.phone_name}
+                                        </TableCell>
                                         <TableCell>{user.email_address}</TableCell>
                                         <TableCell>{user.phone_number}</TableCell>
                                         <ActionButton>
@@ -216,6 +238,18 @@ export default function AccoutList() {
                         <CloseIcon src={closeImg} onClick={close}/>
                     </CloseIconDiv>
 
+       
+                    <EditProfile>
+                        <EditProfileImg
+                            src={
+                                profileImg
+                                ? `http://localhost:3000${profileImg}`
+                                : DefaultUserProfile
+                            }
+                        />
+
+                    </EditProfile>
+                                
                     <EditInputDiv>
                         <PhoneNameEditInputDiv>
                             <PhoneNameEditInputTitle>PhoneName</PhoneNameEditInputTitle>

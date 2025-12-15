@@ -263,17 +263,33 @@ export const EditUserButtonGroup = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 `
 
 export const EditInputDiv = styled.div`
     max-width: 485px;
     width: 100%;
-    height: 300px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+`
+
+export const EditProfile = styled.div`
+    max-width: 485px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const EditProfileImg = styled.img`
+    max-width: 100px;
+    width: 100%;
+    height: 100px;
+    border-radius: 50%;
 `
 
 export const PhoneNameEditInputDiv = styled.div`
