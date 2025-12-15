@@ -152,8 +152,6 @@ export default function AccoutList() {
                                 </TableRow>
                             ))
                         )}
-
-
                 
                     </UserInfoList>
                 </UserInfo>
