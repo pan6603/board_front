@@ -22,13 +22,13 @@ import {
 } from "../../../styles/pages/accout/post/UserCreate"
 import userProfileImg from '../../../assets/user_profile.png'
 import { useState, useRef } from "react";
-import { createUser } from "../../../service/api";
+// import { createUser } from "../../../service/api";
 import { useNavigate } from "react-router-dom";
-
+import { uploadProfileApi } from "../../../service/api";
 
 
 export default function UserCreate() {
-  // const [profileFile, setProfileFile] = useState<File | null>(null);
+  const [profileFile, setProfileFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -38,30 +38,54 @@ export default function UserCreate() {
   const [emailAddress, setEmailAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // form 기본 동작 막기
 
-  const handleSubmit = async () => {
+    const formData = new FormData();
+
+    formData.append("phone_name", phoneName);
+    formData.append("email_address", emailAddress);
+    formData.append("phone_number", phoneNumber);
+
+    if (profileFile) {
+      formData.append("profile_image", profileFile);
+    }
+
     try {
-      await createUser({
-        phone_name: phoneName,
-        email_address: emailAddress,
-        phone_number: phoneNumber,
-      });
-
-      alert("Success");
+      await uploadProfileApi(formData);
+      alert("등록 완료");
       navigate("/");
-
     } catch (error) {
-      alert("등록 실패");
-      console.error(error);
+      console.error("등록 실패", error);
+      alert("실패");
     }
   };
+
+
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     await createUser({
+  //       phone_name: phoneName,
+  //       email_address: emailAddress,
+  //       phone_number: phoneNumber,
+  //     });
+
+  //     alert("Success");
+  //     navigate("/");
+
+  //   } catch (error) {
+  //     alert("등록 실패");
+  //     console.error(error);
+  //   }
+  // };
 
 
   return (
     <>
       <UserCreateContainer>
           <UserAddFromDiv>
-                <UserAddFrom encType="multipart/form-data">
+                <UserAddFrom>
                     <UserAddFromTitle>
                         <UserProfileWrapper onClick={() => fileInputRef.current?.click()}>
                             <UserProfile src={preview || userProfileImg} />
@@ -74,6 +98,7 @@ export default function UserCreate() {
                               onChange={(e) => {
                                 if (!e.target.files) return;
                                 const file = e.target.files[0];
+                                setProfileFile(file); 
                                 setPreview(URL.createObjectURL(file));
                               }}
                             />

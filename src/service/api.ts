@@ -55,6 +55,16 @@ export const deleteUserApi = (id: number) => {
 };
 
 
+/** 프로필 이미지 업로드 */
+export const uploadProfileApi = (formData: FormData) => {
+  return api.post("/users/profile", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+
 
 
 export default api;
