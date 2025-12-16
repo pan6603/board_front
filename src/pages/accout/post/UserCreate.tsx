@@ -22,7 +22,6 @@ import {
 } from "../../../styles/pages/accout/post/UserCreate"
 import userProfileImg from '../../../assets/user_profile.png'
 import { useState, useRef } from "react";
-// import { createUser } from "../../../service/api";
 import { useNavigate } from "react-router-dom";
 import { uploadProfileApi } from "../../../service/api";
 
