@@ -3,14 +3,12 @@ import {
    Content,
    LoginForm,
    LoginFormTitle,
-   FullNameInput,
-   EmailInput,
-   PasswordInput,
-   InputName,
-   NameInp,
-   FullNameInputLabel,
-   EmailInputLabel,
-   PasswordInputLabel,
+//    EmailInput,
+//    PasswordInput,
+//    InputName,
+//    NameInp,
+//    EmailInputLabel,
+//    PasswordInputLabel,
    ButtonCreateAcc,
    ButtonCreateAccText,
    AlreadyAccount,
@@ -25,8 +23,13 @@ import {
 } from "../../../styles/pages/accout/login/Login"
 import GooglePng from '../../../assets/login/Google.png';
 import GithubPng from '../../../assets/login/GitHub.png';
+import FloatingInput from "../../../components /input/FloatingInput";
+import { useState } from "react";
 
 export default function Login() {
+    const [email, setEmail] = useState<string>("");
+    const [passWord, setPassWord] = useState<string>("");
+
     return (
         <>
             <LoginPage>
@@ -34,13 +37,21 @@ export default function Login() {
                     <LoginForm>
                         <LoginFormTitle>Create your Free Account</LoginFormTitle>
 
-                        <FullNameInput>
-                            <InputName>FullName</InputName>
-                            <NameInp />
-                            <FullNameInputLabel>Enter your Full Name here</FullNameInputLabel>
-                        </FullNameInput>
+                        <FloatingInput 
+                            label="Enter your Email here"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="Email"
+                        />
 
-                        <EmailInput>
+                        <FloatingInput 
+                            label="Enter your Password here"
+                            value={passWord}
+                            onChange={(e) => setPassWord(e.target.value)}
+                            type="Password"
+                        />
+
+                        {/* <EmailInput>
                             <InputName>Email</InputName>
                             <NameInp />
                             <EmailInputLabel>Enter your Email here</EmailInputLabel>
@@ -50,7 +61,7 @@ export default function Login() {
                             <InputName>Password</InputName>
                             <NameInp />
                             <PasswordInputLabel>Enter your Password here</PasswordInputLabel>
-                        </PasswordInput>
+                        </PasswordInput> */}
 
                         <ButtonCreateAcc>
                             <ButtonCreateAccText>Create Account</ButtonCreateAccText>

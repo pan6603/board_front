@@ -38,80 +38,7 @@ export const LoginFormTitle = styled.div`
     font-family: SemiBold;
 `
 
-export const FullNameInput = styled.div`
-    max-width: 600px;
-    width: 100%;
-    height: 95px;
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-`
 
-export const InputName = styled.div`
-    font-size: 20px;
-    font-family: Medium;
-    width: max-content;
-    height: 30px;
-    color: #000;
-`
-
-export const FullNameInputLabel = styled.label`
-    width: max-content;
-    height: 30px;
-    font-size: 20px;
-    position: absolute;
-    top: 45px;
-    left: 35px;
-    color: gray;
-`
-
-export const EmailInputLabel = styled.label`
-    width: max-content;
-    height: 30px;
-    font-size: 20px;
-    position: absolute;
-    top: 45px;
-    left: 35px;
-    color: gray;
-`
-
-export const PasswordInputLabel = styled.label`
-    width: max-content;
-    height: 30px;
-    font-size: 20px;
-    position: absolute;
-    top: 45px;
-    left: 35px;
-    color: gray;
-`
-
-export const NameInp = styled.input`
-    max-width: 600px;
-    width: 100%;
-    height: 65px;
-    border-radius: 24px;
-    border: none;
-    background-color: #F5F5F5;
-    color: #000;
-`
-
-
-export const EmailInput = styled.div`
-    max-width: 600px;
-    width: 100%;
-    height: 95px;
-    margin: 30px auto;
-    position: relative;
-`
-
-export const PasswordInput = styled.div`
-    max-width: 600px;
-    width: 100%;
-    height: 95px;
-    margin: 30px auto;
-    position: relative;
-`
 
 export const ButtonCreateAcc = styled.div`
     max-width: 340px;
@@ -143,6 +70,7 @@ export const Or = styled.div`
     font-size: 24px;
     color: #777;
     text-align: center;
+    margin-top: 30px;
 `
 
 export const SocialloginGroup = styled.div`
@@ -152,7 +80,7 @@ export const SocialloginGroup = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    margin: 30px auto;
 `
 
 export const ButtonGoogle = styled.div`
