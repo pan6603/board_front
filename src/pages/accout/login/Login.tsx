@@ -51,23 +51,11 @@ export default function Login() {
                             type="Password"
                         />
 
-                        {/* <EmailInput>
-                            <InputName>Email</InputName>
-                            <NameInp />
-                            <EmailInputLabel>Enter your Email here</EmailInputLabel>
-                        </EmailInput>
-
-                        <PasswordInput>
-                            <InputName>Password</InputName>
-                            <NameInp />
-                            <PasswordInputLabel>Enter your Password here</PasswordInputLabel>
-                        </PasswordInput> */}
-
                         <ButtonCreateAcc>
-                            <ButtonCreateAccText>Create Account</ButtonCreateAccText>
+                            <ButtonCreateAccText>Log in</ButtonCreateAccText>
                         </ButtonCreateAcc>
 
-                        <AlreadyAccount>Already have a account? Login</AlreadyAccount>
+                        <AlreadyAccount>Create Accout</AlreadyAccount>
 
                         <Or> - OR -</Or>
 
