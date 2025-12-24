@@ -47,7 +47,7 @@ import editImg from '../../../assets/edit.png'
 import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
 import { getUserList, deleteUserApi, editUserApi, getUserDetailApi } from "../../../service/api";
-import type { User } from "../../../components /user/user";
+import type { User } from "../../../components/user/user";
 import DefaultUserProfile from '../../../assets/user_profile.png';
 
 export default function AccoutList() {

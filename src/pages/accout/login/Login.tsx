@@ -3,15 +3,10 @@ import {
    Content,
    LoginForm,
    LoginFormTitle,
-//    EmailInput,
-//    PasswordInput,
-//    InputName,
-//    NameInp,
-//    EmailInputLabel,
-//    PasswordInputLabel,
    ButtonCreateAcc,
    ButtonCreateAccText,
-   AlreadyAccount,
+   CreateAccoutDiv,
+   CreateAccountLink,
    Or,
    SocialloginGroup,
    ButtonGoogle,
@@ -23,7 +18,7 @@ import {
 } from "../../../styles/pages/accout/login/Login"
 import GooglePng from '../../../assets/login/Google.png';
 import GithubPng from '../../../assets/login/GitHub.png';
-import FloatingInput from "../../../components /input/FloatingInput";
+import FloatingInput from "../../../components/input/FloatingInput";
 import { useState } from "react";
 
 export default function Login() {
@@ -55,8 +50,10 @@ export default function Login() {
                             <ButtonCreateAccText>Log in</ButtonCreateAccText>
                         </ButtonCreateAcc>
 
-                        <AlreadyAccount>Create Accout</AlreadyAccount>
-
+                        <CreateAccoutDiv>
+                            <CreateAccountLink to="/add">Create Accout</CreateAccountLink>
+                        </CreateAccoutDiv>
+     
                         <Or> - OR -</Or>
 
                         <SocialloginGroup>

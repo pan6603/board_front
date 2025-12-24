@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const LoginPage = styled.div`
     max-width: 1440px;
@@ -59,11 +60,19 @@ export const ButtonCreateAccText = styled.div`
     color: #000;
 `
 
-export const AlreadyAccount = styled.p`
-    margin-top: 8px;
+export const CreateAccoutDiv = styled.div`
+    max-width: 600px;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+export const CreateAccountLink = styled(Link)`
+    margin: 8px auto;
     font-size: 14px;
     color: #777;
-    text-align: center;
 `
 
 export const Or = styled.div`

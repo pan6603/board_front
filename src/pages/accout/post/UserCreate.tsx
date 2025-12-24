@@ -53,7 +53,7 @@ export default function UserCreate() {
     try {
       await uploadProfileApi(formData);
       alert("등록 완료");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error("등록 실패", error);
       alert("실패");
@@ -134,7 +134,7 @@ export default function UserCreate() {
                         <SubmitButton onClick={handleSubmit}>
                           Submit
                         </SubmitButton>
-                        <CancelButtonLink to="/">
+                        <CancelButtonLink to="/login">
                             <CancelButton>Cancel</CancelButton>
                         </CancelButtonLink>
                     </ButtonGroup>
