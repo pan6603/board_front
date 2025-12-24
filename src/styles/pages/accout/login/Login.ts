@@ -41,7 +41,7 @@ export const LoginFormTitle = styled.div`
 
 
 
-export const ButtonCreateAcc = styled.div`
+export const ButtonCreateAcc = styled.button`
     max-width: 340px;
     width: 100%;
     height: 60px;
@@ -92,7 +92,7 @@ export const SocialloginGroup = styled.div`
     margin: 30px auto;
 `
 
-export const ButtonGoogle = styled.div`
+export const ButtonGoogle = styled.button`
     max-width: 220px;
     width: 100%;
     height: 55px;
@@ -114,7 +114,6 @@ export const GoogleImgDiv = styled.img`
     max-width: 32px;
     width: 100%;
     height: 32px;
-    margin-left: 12px;
 `
 
 export const GoogleLoginText = styled.div`
@@ -122,7 +121,7 @@ export const GoogleLoginText = styled.div`
     color: #000;
 `
 
-export const ButtonGithub = styled.div`
+export const ButtonGithub = styled.button`
     max-width: 220px;
     width: 100%;
     height: 55px;
@@ -144,7 +143,7 @@ export const GithubImgDiv = styled.img`
     max-width: 32px;
     width: 100%;
     height: 32px;
-    margin-left: 12px;
+    
 `
 
 export const GithubLoginText = styled.div`

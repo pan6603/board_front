@@ -179,7 +179,7 @@ export const ButtonGroup = styled.div`
     align-items: center;
 `
 
-export const SubmitButton = styled.div`
+export const SubmitButton = styled.button`
     max-width: 145px;
     width: 100%;
     height: 50px;
@@ -198,7 +198,7 @@ export const SubmitButton = styled.div`
     }
 `
 
-export const CancelButton = styled.div`
+export const CancelButton = styled.button`
     max-width: 145px;
     width: 100%;
     height: 50px;

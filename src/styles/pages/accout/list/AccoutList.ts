@@ -45,7 +45,7 @@ export const UserTitle = styled.div`
     font-size: 24px;
 `
 
-export const AddNew = styled.div`
+export const AddNew = styled.button`
     max-width: 107px;
     width: 100%;
     height: 40px;
@@ -54,6 +54,9 @@ export const AddNew = styled.div`
     border-radius: 24px;
     margin-right: 20px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         background-color: #3246E6; /* 살짝 진한 색 */
@@ -171,7 +174,7 @@ export const ActionButton = styled.div`
     align-items: center;
 `
 
-export const EditButton = styled.div`
+export const EditButton = styled.button`
     max-width: 56px;
     width: 100%;
     height: 32px;
@@ -189,7 +192,7 @@ export const EditButton = styled.div`
     }
 `
 
-export const DeleteButton = styled.div`
+export const DeleteButton = styled.button`
     max-width: 56px;
     width: 100%;
     height: 32px;
@@ -425,7 +428,7 @@ export const ModalActions = styled.div`
     
 `
 
-export const DeleteBtn = styled.div`
+export const DeleteBtn = styled.button`
     max-width: 145px;
     width: 100%;
     height: 50px;
@@ -444,7 +447,7 @@ export const DeleteBtn = styled.div`
     }
 `
 
-export const EditBtn = styled.div`
+export const EditBtn = styled.button`
     max-width: 145px;
     width: 100%;
     height: 50px;
@@ -463,7 +466,7 @@ export const EditBtn = styled.div`
     }
 `
 
-export const CanCelBtn = styled.div`
+export const CanCelBtn = styled.button`
     max-width: 145px;
     width: 100%;
     height: 50px;
