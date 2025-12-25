@@ -26,12 +26,12 @@ export const createUser = (data: {
 
 /** 유저 목록 조회 */
 export const getUserList = () => {
-  return api.get("/users/list");
+  return api.get(BASE + "/list");
 };
 
 /** 유저 상세 조회 */
 export const getUserDetailApi = (id: number) => {
-  return api.get(`/users/${id}`);
+  return api.get(BASE + `/${id}`);
 };
 
 
@@ -44,20 +44,20 @@ export const editUserApi = (
     phone_number?: string;
   }
 ) => {
-  return api.put(`/users/${id}`, data);
+  return api.put(BASE + `/${id}`, data);
 };
 
 
 
 /** ✅ 유저 삭제 */
 export const deleteUserApi = (id: number) => {
-  return api.delete(`/users/${id}`);
+  return api.delete(BASE + `/${id}`);
 };
 
 
 /** 프로필 이미지 업로드 */
 export const uploadProfileApi = (formData: FormData) => {
-  return api.post("/users/profile", formData, {
+  return api.post(BASE + "/profile", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
