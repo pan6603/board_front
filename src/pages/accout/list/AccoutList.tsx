@@ -18,68 +18,31 @@ import {
     DeleteButton,
     ActionIcon,
     Overlay,
-    EditUser,
     DeleteUser,
     DeleteUserDiv,
     ModalActions,
     DeleteBtn,
     CanCelBtn,
-    CloseIconDiv,
-    CloseIcon,
     EmptyState,
-    EditUserButtonGroup,
-    EditBtn,
-    EditInputDiv,
-    PhoneNameEditInputDiv,
-    EmailAddressEditInputDiv,
-    PhoneNumberEditInputDiv,
-    PhoneNameEditInputTitle,
-    PhoneNameEditInput,
-    EmailAddressEditInputTitle,
-    EmailAddressEditInput,
-    PhoneNumberEditInputTitle,
-    PhoneNumberEditInput,
-    EditProfile,
-    EditProfileImg
 } from "../../../styles/pages/accout/list/AccoutList"
 import deleteImg from '../../../assets/delete.png';
 import editImg from '../../../assets/edit.png'
-import closeImg from '../../../assets/close.png'
 import { useState, useEffect } from "react";
-import { getUserList, deleteUserApi, editUserApi, getUserDetailApi } from "../../../service/api";
+import { getUserList, deleteUserApi } from "../../../service/users.api";
 import type { User } from "../../../components/user/user";
 import DefaultUserProfile from '../../../assets/user_profile.png';
+import EditPopup from "../detail/EditPopup";
 
 export default function AccoutList() {
-    const [phoneName, setPhoneName] = useState("");
-    const [emailAddress, setEmailAddress] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [profileImg, setProfileImg] = useState<string>("");
-
-
     const [users, setUsers] = useState<User[]>([]);
     const [isOpen, setIsOpen] = useState(false);
 
     const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-
-    const editPopup = async (id: number) => {
-        try {
-            setSelectedUserId(id);
-
-            const res = await getUserDetailApi(id);
- 
-            setProfileImg(res.data.profile_image);
-            setPhoneName(res.data.phone_name);
-            setEmailAddress(res.data.email_address);
-            setPhoneNumber(res.data.phone_number ?? "");
-
-            setIsOpen(true);
-        } catch (error) {
-            console.error("유저 조회 실패", error);
-            alert("유저 정보를 불러오지 못했습니다.");
-        }
-    };
+    // const [phoneName, setPhoneName] = useState("");
+    // const [emailAddress, setEmailAddress] = useState("");
+    // const [phoneNumber, setPhoneNumber] = useState("");
+  
 
 
     const deletePopup = (id: number) => {
@@ -91,9 +54,6 @@ export default function AccoutList() {
         setIsDeleteOpen(false);
     }
 
-    const close = () => {
-        setIsOpen(false);
-    }
 
     /** 목록 조회 */
     const fetchUsers = async () => {
@@ -124,26 +84,7 @@ export default function AccoutList() {
         }
     };
 
-    const editUser = async () => {
-        if (!selectedUserId) return;
 
-        try {
-            await editUserApi(selectedUserId, {
-                phone_name: phoneName,
-                email_address: emailAddress,
-                phone_number: phoneNumber,
-            });
-
-            alert("Edit > Success");
-
-            setIsOpen(false);
-            setSelectedUserId(null);
-            fetchUsers();  
-        } catch (error) {
-            console.error("수정 실패", error);
-            alert("수정실패");   
-        }
-    }
 
 
     useEffect(() => {
@@ -151,17 +92,17 @@ export default function AccoutList() {
     }, []);
 
 
-    useEffect(() => {
-        if (isOpen) {
-          document.body.style.overflow = 'hidden'; 
-        } else {
-          document.body.style.overflow = 'auto'; 
-        }
+    // useEffect(() => {
+    //     if (isOpen) {
+    //       document.body.style.overflow = 'hidden'; 
+    //     } else {
+    //       document.body.style.overflow = 'auto'; 
+    //     }
 
-        return () => {
-            document.body.style.overflow = 'auto'; 
-        };
-    }, [isOpen]);
+    //     return () => {
+    //         document.body.style.overflow = 'auto'; 
+    //     };
+    // }, [isOpen]);
 
     
 
@@ -211,11 +152,11 @@ export default function AccoutList() {
                                             background: "red"
                                             }}
                                         />
-                                        {/* <TableCell>{user.phone_name}</TableCell> */}
+                                        <TableCell>{user.phone_name}</TableCell>
                                         <TableCell>{user.email_address}</TableCell>
                                         <TableCell>{user.phone_number}</TableCell>
                                         <ActionButton>
-                                            <EditButton onClick={() => editPopup(user.id)}>
+                                            <EditButton onClick={() => setIsOpen(true)}>
                                                 <ActionIcon src={editImg} />
                                             </EditButton>
                                             <DeleteButton onClick={() => deletePopup(user.id)}>
@@ -231,57 +172,11 @@ export default function AccoutList() {
                 </UserInfo>
             </AccoutContainer>
 
+            {/* 수정 상세화면 */}
             {isOpen && <Overlay />}
-
-            {isOpen && 
-                <EditUser>
-                    <CloseIconDiv>
-                        <CloseIcon src={closeImg} onClick={close}/>
-                    </CloseIconDiv>
-
-       
-                    <EditProfile>
-                        <EditProfileImg
-                            src={
-                                profileImg
-                                ? `http://localhost:3000${profileImg}`
-                                : DefaultUserProfile
-                            }
-                        />
-
-                    </EditProfile>
-                                
-                    <EditInputDiv>
-                        <PhoneNameEditInputDiv>
-                            <PhoneNameEditInputTitle>PhoneName</PhoneNameEditInputTitle>
-                            <PhoneNameEditInput 
-                                value={phoneName}
-                                onChange={(e) => setPhoneName(e.target.value)}
-                            />
-                        </PhoneNameEditInputDiv>
-
-                        <EmailAddressEditInputDiv>
-                            <EmailAddressEditInputTitle>Email</EmailAddressEditInputTitle>
-                            <EmailAddressEditInput 
-                                value={emailAddress}
-                                onChange={(e) => setEmailAddress(e.target.value)}
-                            />
-                        </EmailAddressEditInputDiv>
-
-                        <PhoneNumberEditInputDiv>
-                            <PhoneNumberEditInputTitle>PhoneNumber</PhoneNumberEditInputTitle>
-                            <PhoneNumberEditInput 
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
-                            />
-                        </PhoneNumberEditInputDiv>
-                    </EditInputDiv>
-
-                    <EditUserButtonGroup>
-                        <EditBtn onClick={editUser}>Edit</EditBtn>
-                    </EditUserButtonGroup>
-                </EditUser>
-            }
+            {isOpen && <EditPopup />}
+    
+         
 
             {/* 삭제하기 */}
             {isDeleteOpen && <Overlay />}

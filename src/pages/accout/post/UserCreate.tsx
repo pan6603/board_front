@@ -23,7 +23,7 @@ import {
 import userProfileImg from '../../../assets/user_profile.png'
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { uploadProfileApi } from "../../../service/api";
+import { uploadProfileApi } from "../../../service/users.api";
 
 
 export default function UserCreate() {
