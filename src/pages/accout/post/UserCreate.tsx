@@ -84,7 +84,7 @@ export default function UserCreate() {
     <>
       <UserCreateContainer>
           <UserAddFromDiv>
-                <UserAddFrom>
+                <UserAddFrom onSubmit={handleSubmit}>
                     <UserAddFromTitle>
                         <UserProfileWrapper onClick={() => fileInputRef.current?.click()}>
                             <UserProfile src={preview || userProfileImg} />
@@ -131,7 +131,7 @@ export default function UserCreate() {
           
 
                     <ButtonGroup>
-                        <SubmitButton onClick={handleSubmit}>
+                        <SubmitButton type="submit">
                           Submit
                         </SubmitButton>
                         <CancelButtonLink to="/login">
